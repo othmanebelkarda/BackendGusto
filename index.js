@@ -4,7 +4,7 @@ const app = express();
 
 const mongoose = require("mongoose");
 
-const Article = require("./models/article.js")
+const Article = require("./models/Article.js")
 
 //mongodb+srv://belkardaothmane05:<password>@cluster0.1l2p35k.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0;
 
