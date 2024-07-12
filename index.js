@@ -1,5 +1,7 @@
 const express = require("express");
 
+const cors = require('cors');
+
 const app = express();
 
 const mongoose = require("mongoose");
@@ -15,9 +17,25 @@ console.log("connected succesfully");
 }).catch((error)=>{
     console.log("error with connecting with data base",error);
 });
+
+app.use(cors());
+
+app.get('/article', (req, res) => {
+    res.send('CORS headers added!');
+});
+
 app.listen(3000, ()=>{
     console.log("I'm listening in port 3000")
 });
+
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+});
+
+
 app.use(express.json());
 
 app.get("/hello",(req, res)=>{
@@ -54,7 +72,7 @@ app.post("/article", async(req,res)=>{
     await newArticle.save()
     res.json(newArticle)
 });
-app.get("/article",async(req,res)=>{
+/*app.get("/article",async(req,res)=>{
     const id=req.params.articleId;
   try{ 
    //   const article = await Article.findById(id);
@@ -66,10 +84,9 @@ app.get("/article",async(req,res)=>{
         console.log("error");
         return res.send("error")
     }
-  
-   
-   
-})
+})*/
+
+
 app.delete("/articles/:articleId",async(req,res)=>{
     const id = req.params.articleId;
     try{
