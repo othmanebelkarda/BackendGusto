@@ -20,9 +20,9 @@ console.log("connected succesfully");
 
 app.use(cors());
 
-app.get('/article', (req, res) => {
+/*app.get('/article', (req, res) => {
     res.send('CORS headers added!');
-});
+});*/
 
 app.listen(3000, ()=>{
     console.log("I'm listening in port 3000")
@@ -72,8 +72,7 @@ app.post("/article", async(req,res)=>{
     await newArticle.save()
     res.json(newArticle)
 });
-/*app.get("/article",async(req,res)=>{
-    const id=req.params.articleId;
+app.get("/article",async(req,res)=>{
   try{ 
    //   const article = await Article.findById(id);
    const article=await Article.find();
@@ -84,7 +83,7 @@ app.post("/article", async(req,res)=>{
         console.log("error");
         return res.send("error")
     }
-})*/
+})
 
 
 app.delete("/articles/:articleId",async(req,res)=>{
